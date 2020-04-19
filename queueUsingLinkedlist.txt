@@ -1,0 +1,116 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int d)
+    {
+        data=d;
+        next=null;
+    }
+}
+public class Main
+{
+   static Node front;
+    static Node rear;
+    static int size;
+    Main()
+    {
+        front=null;
+        rear=null;
+        size=0;
+    }
+    public int size()
+    {
+        return size;
+    }
+    public boolean isEmpty()
+    {
+        if(size==0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public void enqueue(int data)
+    {
+        Node newNode=new Node(data);
+        if(front==null)
+        {
+            front=newNode;
+            rear=newNode;
+        }
+        else
+        {
+           rear.next=newNode;
+           rear=rear.next;
+        }
+        size++;
+    
+    }
+    public int findFrontElement() throws QueueEmptyException
+    {
+        if(isEmpty())
+        {
+         QueueEmptyException e=new QueueEmptyException();
+         throw e;
+        }
+        int temp=front.data;
+        return temp;
+    }
+    public int dequeue()
+    {
+         if(isEmpty())
+        {
+            System.out.println("queue underflow");
+            
+        }
+        
+         int temp=front.data;
+         front=front.next;
+         size--;
+         return temp;
+    }
+    public void printList()
+    {
+        Node temp=front;
+        while(temp!=null)
+        {
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+    }
+    
+	public static void main(String[] args) throws QueueEmptyException {
+		Main queue=new Main();
+		queue.enqueue(1);
+		queue.enqueue(2);
+		queue.enqueue(3);
+		queue.enqueue(4);
+		queue.enqueue(5);
+		queue.enqueue(6);
+		
+		queue.printList();
+		
+		System.out.println("\n Size of queue "+queue.size());
+		
+// 		System.out.println("Front Element is "+queue.findFrontElement());
+		
+// 		System.out.println("deletion of element "+queue.dequeue());
+		
+// 		System.out.println("Front Element is "+queue.findFrontElement());
+
+           while(!queue.isEmpty())
+           {
+               System.out.println("Deletion of Element is"+queue.dequeue());
+           }
+           System.out.println("size of queue is"+queue.size());
+           System.out.println("Front element is"+queue.findFrontElement());
+	}
+}
+class QueueEmptyException extends Exception{
+    
+} 

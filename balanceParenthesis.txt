@@ -1,0 +1,68 @@
+import java.util.*;
+class Main{
+    public static boolean isParenthesis(String str)
+    {
+        Stack<Character>stack=new Stack<>();
+        for(int i=0;i<str.length();i++)
+        {
+            if( str.charAt(i)=='{' || str.charAt(i)=='[' || str.charAt(i)=='(' )
+            {
+                stack.push(str.charAt(i));
+            }
+             if( str.charAt(i)=='}' || str.charAt(i)==']' || str.charAt(i)==')')
+            {
+                if(stack.isEmpty())
+                {
+                    return false;
+                }
+                else if(!(isMatchingPair(stack.pop(),str.charAt(i))))
+                {
+                    return false;
+                }
+            }
+            
+        }
+        if(stack.isEmpty())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+    public static boolean isMatchingPair(char ch1,char ch2)
+    {
+        if(ch1=='[' && ch2==']')
+        {
+            return true;
+        }
+        else if(ch1=='{' && ch2=='}')
+        {
+            return true;
+        }
+       else if(ch1=='(' && ch2==')')
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String str=sc.nextLine();
+        if(isParenthesis(str))
+        {
+            System.out.println("It is balanced");
+        }
+        else
+        {
+            System.out.println("Not balanced");
+        }
+        
+    }
+}

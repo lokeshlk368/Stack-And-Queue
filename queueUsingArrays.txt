@@ -1,0 +1,104 @@
+import java.util.*;
+class Main{
+    private int data[];
+    private int front;
+    private int rear;
+    private int size;
+    
+    Main(int capacity)
+    {
+        data=new int[capacity];
+        front=-1;
+        rear=-1;
+        size=0;
+    }
+    int size()
+    {
+        return size;
+    }
+    boolean isEmpty()
+    {
+        if(size==0)
+        {
+            return true;
+        }
+        else
+        {
+            return  false;
+        }
+    }
+    int front()
+    {
+        if(size==0)
+        {
+            System.out.println("Queue uderflow");
+        }
+        int temp=data[front];
+        return temp;
+    }
+    public void enqueue(int element)
+    {
+        if(size==data.length)
+        {
+            System.out.println("Queue overflow");
+        }
+        if(size==0)
+        {
+            front=0;
+        }
+        rear++;
+        if(rear==data.length)
+        {
+            rear=0;
+        }
+        data[rear]=element;
+        size++;
+        
+    }
+    public int dequeue()
+    {
+        if(size==0)
+        {
+            System.out.println("Queue uderflow");
+        }
+        
+        int temp=data[front];
+          front++;
+          size--;
+        if(front==data.length)
+        {
+            front=0;
+        }
+        if(size==0)
+        {
+            front=-1;
+            rear=-1;
+        }
+        return temp;
+        
+        
+     }
+     
+    public static void main(String args[])
+    {
+        Main queue=new Main(5);
+        queue.enqueue(5);
+        queue.enqueue(10);
+        queue.enqueue(15);
+        queue.dequeue();
+        queue.dequeue();
+        queue.enqueue(20);
+        
+        // System.out.println(queue.dequeue());
+        // System.out.println(queue.size());
+        // System.out.println(queue.front());
+        // System.out.println(queue.dequeue());
+        // System.out.println(queue.size());
+        while(!(queue.isEmpty()))
+        {
+            System.out.println(queue.dequeue());
+        }
+        System.out.println(queue.size());
+        
+    }
+}

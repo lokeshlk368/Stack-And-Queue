@@ -1,0 +1,95 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int d)
+    {
+        data=d;
+        next=null;
+    }
+}
+class StackEmptyException extends Exception{
+    
+}
+class Main{
+    static Node head;
+    static int  size;
+    Main()
+    {
+        head=null;
+        size=0;
+    }
+    public void push(int data)
+    {
+        Node newNode=new Node(data);
+        newNode.next=head;
+        head=newNode;
+        size++;
+    }
+    public boolean isEmpty()
+    {
+        if(size==0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+    public int size()
+    {
+        return size;
+    }
+    public int top()throws StackEmptyException
+    {
+        if(isEmpty())
+        {
+           StackEmptyException e=new StackEmptyException();
+           throw e;
+        }
+        int top=head.data;
+        return top;
+    }
+    
+    public int pop()throws StackEmptyException
+    {
+        
+         if(isEmpty())
+        {
+           StackEmptyException e=new StackEmptyException();
+           throw e;
+        }
+        
+        int temp=head.data;
+        head=head.next;
+        size--;
+        return temp;
+    }
+    
+    
+    public static void main(String args[]) throws StackEmptyException
+    {
+        Main m=new Main();
+        m.push(5);
+        m.push(10);
+        m.push(15);
+        m.push(20);
+        m.push(25);
+        System.out.println("The size of stack is"+m.size());
+        // System.out.println("The Top element is"+m.top());
+        // m.pop();
+        // System.out.println("the pop Element is"+m.pop());
+        // System.out.println("The top element is"+m.top());
+        
+        System.out.println("The pop element Is");
+        while(!m.isEmpty())
+        {
+            System.out.print(m.pop()+" ");
+        }
+        
+        // System.out.println("Stack is");
+        
+    }
+}
